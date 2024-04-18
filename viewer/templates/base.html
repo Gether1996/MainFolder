@@ -8,6 +8,7 @@
     <link rel="icon" type="image/x-icon" href="{% static 'images/rings.png' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'slick.min.css' %}">
     {% block extra_head %}{% endblock %}
 </head>
 
@@ -16,7 +17,11 @@
     {% include 'navbar.html' %}
 
     {% block content %}{% endblock %}
+        <script>
+            var csrf_token = "{{ csrf_token }}";
+        </script>
         <script src="{% static 'scripts/jquery-3.6.0.min.js' %}"></script>
+        <script src="{% static 'scripts/slick.min.js' %}"></script>
         <script src="{% static 'scripts/sweetalert2@11.js' %}"></script>
         <script src="{% static 'scripts/general.js' %}"></script>
     {% block extra_scripts %}{% endblock %}

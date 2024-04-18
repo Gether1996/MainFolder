@@ -1,6 +1,8 @@
+from django.http import JsonResponse
 from django.shortcuts import redirect
 from viewer.models import Person
 from datetime import datetime
+import json
 
 
 def submit_form(request):
@@ -36,3 +38,21 @@ def submit_form(request):
         )
 
         return redirect('homepage')
+
+
+def submit_form_no_attendance(request):
+    if request.method == 'POST':
+        json_data = json.loads(request.body.decode('utf-8'))
+
+        new_person = Person.objects.create(
+            full_name=json_data['full_name'],
+            attending=False,
+            dietary_restrictions=None,
+            accommodation_from=None,
+            accommodation_to=None,
+            drink_preferences='',
+            song='',
+        )
+
+        return JsonResponse({"status": "success"})
+    return JsonResponse({"status": "error"})

@@ -8,3 +8,6 @@ class Person(Model):
     accommodation_to = DateField(null=True)
     drink_preferences = TextField()
     song = CharField(max_length=100)
+
+class Photo(Model):
+    photo = ImageField(upload_to='static/images/')

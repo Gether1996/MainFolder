@@ -123,3 +123,104 @@ document.addEventListener('DOMContentLoaded', function () {
         form.submit();
     });
 });
+
+
+function areYouSure() {
+    var full_name_input = document.getElementById("full_name");
+    var attending_no_radio = document.getElementById("attending_no");
+
+    if (!full_name_input.value) {
+        attending_no_radio.checked = false;
+        Swal.fire({
+            icon: 'error',
+            title: 'Vyplňte najskôr Vaše meno a priezvisko prosím.',
+        });
+        return false;
+    }
+
+    Swal.fire({
+        icon: 'question',
+        title: `${full_name_input.value} - naozaj sa nezúčastníte svadby?`,
+        text: 'Po potvrdení sa dotazník ukončí a bude zaevidovaná Vaša neúčasť.',
+        showConfirmButton: true,
+        confirmButtonText: 'Áno, nezúčastním sa',
+        confirmButtonColor: '#2e513d',
+        showCancelButton: true,
+        cancelButtonText: 'Zrušiť',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                icon: 'success',
+                confirmButtonColor: '#2e513d',
+                title: `Mrzí nás, že sa nedostavíte na našu svadbu.<br>
+                        ${full_name_input.value} - evidujeme Vašu neúčasť.`,
+            }).then((result) => {
+                if (result.isConfirmed || result.dismiss === Swal.DismissReason.backdrop || result.dismiss === Swal.DismissReason.esc || result.dismiss === Swal.DismissReason.close) {
+                    window.location.reload();
+                }
+            });
+
+            fetch('/submit_form_no_attendance/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrf_token
+                },
+                body: JSON.stringify({ full_name: full_name_input.value })
+            }).catch((error) => {
+                console.error('Error:', error);
+            });
+        } else {
+            attending_no_radio.checked = false;
+        }
+    });
+}
+
+
+function smoothScroll(targetId) {
+    var target = document.getElementById(targetId);
+    if (target) {
+      var targetPosition = target.offsetTop - 100; // Get the target element's position with an additional 100px offset from the top
+      var startPosition = window.pageYOffset; // Get current position
+      var distance = targetPosition - startPosition;
+      var duration = 1000; // Set the duration of the scroll in milliseconds
+      let start = null;
+
+      // Function to perform the scrolling animation
+      function animation(currentTime) {
+        if (start === null) {
+          start = currentTime;
+        }
+        var timeElapsed = currentTime - start;
+        var run = ease(timeElapsed, startPosition, distance, duration);
+        window.scrollTo(0, run);
+        if (timeElapsed < duration) {
+          requestAnimationFrame(animation);
+        }
+      }
+
+      // Easing function for smooth scrolling
+      function ease(t, b, c, d) {
+        t /= d / 2;
+        if (t < 1) return c / 2 * t * t + b;
+        t--;
+        return -c / 2 * (t * (t - 2) - 1) + b;
+      }
+
+      requestAnimationFrame(animation);
+    }
+}
+
+$('.slider').slick({
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 2500,
+    arrows: true,
+    dots: true,
+    prevArrow: '<button type="button" class="slick-prev"><i class="fa-solid fa-arrow-left-to-arc"></i></button>',
+    nextArrow: '<button type="button" class="slick-next"><i class="fa-solid fa-arrow-right-to-arc"></i></button>',
+    customPaging: function(slider, i) {
+        return '<button type="button" class="custom-dot"></button>';
+    }
+});

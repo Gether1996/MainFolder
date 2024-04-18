@@ -1,0 +1,106 @@
+
+<form id="rsvpForm" action="{% url 'submit_form' %}" method="post">
+    {% csrf_token %}
+    <div class="segment" id="name_surname_segment">
+        <label class="question" for="full_name">Meno a Priezvisko:</label>
+        <input type="text" id="full_name" name="full_name">
+    </div>
+
+    <div class="segment" id="attending_segment">
+        <label class="question">Zúčastníš sa na našej svadbe?</label><br>
+        <div class="radio-options-in-row">
+            <div class="yes-no-container">
+                <input type="radio" id="attending_yes" name="attending" value="yes">
+                <label for="attending_yes">Áno</label><br>
+            </div>
+            <div class="yes-no-container">
+                <input type="radio" id="attending_no" name="attending" value="no" onclick="areYouSure()">
+                <label for="attending_no">Nie</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="segment" id="restrictions_segment">
+        <label class="question">Máš nejaké špeciálne diéty/potravinové intolerancie?</label><br>
+        <div class="radio-options-in-row">
+            <div class="yes-no-container">
+                <input type="radio" id="diet_restrictions_yes" name="diet_restrictions_checkbox" value="yes">
+                <label for="diet_restrictions_yes">Áno</label><br>
+            </div>
+            <div class="yes-no-container">
+                <input type="radio" id="diet_restrictions_no" name="diet_restrictions_checkbox" value="no">
+                <label for="diet_restrictions_no">Nie</label><br>
+            </div>
+        </div>
+        <br>
+        <div class="diet-restrictions-text-input">
+            <div class="label-input-container" id="container">
+                <label for="diet_restrictions_details">Konkrétne:</label>
+                <input type="text" id="diet_restrictions_details" name="diet_restrictions_details">
+            </div>
+        </div>
+    </div>
+
+    <div class="segment" id="accommodation_segment">
+        <label class="question">Ubytovanie:</label><br>
+        <div class="checkbox-container">
+            <input type="radio" id="accommodation_none" name="accommodation" value="none">
+            <label for="accommodation_none">Nie, nemám záujem o ubytovanie</label><br>
+        </div>
+        <div class="checkbox-container">
+            <input type="radio" id="accommodation_one_night" name="accommodation" value="one_night">
+            <label for="accommodation_one_night">Áno, chcem ostať na 1 noc (zo soboty na nedeľu)</label><br>
+        </div>
+        <div class="checkbox-container">
+            <input type="radio" id="accommodation_multiple_nights" name="accommodation" value="multiple_nights">
+            <label for="accommodation_multiple_nights">Áno, chcem sa ubytovať na viac nocí, konkrétne (dátum od-do):</label>
+        </div>
+        <br>
+        <div class="date-from-to-inputs">
+            <div class="label-input-container">
+                <label for="accommodation_from">Od</label>
+                <input type="date" id="accommodation_from" name="accommodation_from">
+            </div>
+            <div class="label-input-container">
+                <label for="accommodation_from">Do</label>
+                <input type="date" id="accommodation_to" name="accommodation_to">
+            </div>
+        </div>
+        *poznámka: noc zo soboty na nedeľu Vám uhradíme my, na ostatné noci Vám dokážeme zabezpečiť zľavu.
+    </div>
+
+    <div class="segment" id="drinks_segment">
+        <label class="question">Najradšej pijem (možnosť viacerých odpovedí):</label><br>
+        <div class="checkbox-container">
+            <input type="checkbox" id="drink_1" name="drink_preferences" value="Svetlá pálenka">
+            <label for="drink_1">Svetlá pálenka (domáca slivovica, gin, vodka)</label><br>
+        </div>
+        <div class="checkbox-container">
+            <input type="checkbox" id="drink_2" name="drink_preferences" value="Tmavá pálenka">
+            <label for="drink_2">Tmavá pálenka (rum, whiskey, jagermaister)</label><br>
+        </div>
+        <div class="checkbox-container">
+            <input type="checkbox" id="drink_3" name="drink_preferences" value="Pivo">
+            <label for="drink_3">Pivo</label><br>
+        </div>
+        <div class="checkbox-container">
+            <input type="checkbox" id="drink_4" name="drink_preferences" value="Biele víno">
+            <label for="drink_4">Biele víno</label><br>
+        </div>
+        <div class="checkbox-container">
+            <input type="checkbox" id="drink_5" name="drink_preferences" value="Červené víno">
+            <label for="drink_5">Červené víno</label><br>
+        </div>
+        <div class="checkbox-container">
+            <input type="checkbox" id="drink_6" name="drink_preferences" value="Nealko">
+            <label for="drink_6">Nealko</label>
+        </div>
+    </div>
+
+    <div class="segment" id="song_segment">
+        <label class="question" for="song">Na parkete to roztočím, keď kapela zahrá túto pesničku:</label>
+        <input type="text" id="song" name="song">
+    </div>
+
+    <button type="submit">Uložiť</button>
+</form>

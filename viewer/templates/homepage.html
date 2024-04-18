@@ -1,116 +1,125 @@
 {% extends "base.html" %}
 
+{% load static %}
 {% block extra_head %}
     <title>Svadba R&D</title>
 {% endblock %}
 
 {% block content %}
 
-<form id="rsvpForm" action="{% url 'submit_form' %}" method="post">
-    {% csrf_token %}
-    <div class="segment" id="name_surname_segment">
-        <label class="question" for="full_name">Meno a Priezvisko:</label>
-        <input type="text" id="full_name" name="full_name">
-    </div>
-
-    <div class="segment" id="attending_segment">
-        <label class="question">Zúčastníš sa na našej svadbe?</label><br>
-        <div class="radio-options-in-row">
-            <div class="yes-no-container">
-                <input type="radio" id="attending_yes" name="attending" value="yes">
-                <label for="attending_yes">Áno</label><br>
-            </div>
-            <div class="yes-no-container">
-                <input type="radio" id="attending_no" name="attending" value="no">
-                <label for="attending_no">Nie</label>
-            </div>
+<section id="home">
+    <h1 class="section-h1"></h1>
+        <div class="slider">
+            {% for photo in photos %}
+                <div><img src="{{ photo.photo.url }}" alt="Slide"></div>
+            {% endfor %}
         </div>
-    </div>
+</section>
 
-    <div class="segment" id="restrictions_segment">
-        <label class="question">Máš nejaké špeciálne diéty/potravinové intolerancie?</label><br>
-        <div class="radio-options-in-row">
-            <div class="yes-no-container">
-                <input type="radio" id="diet_restrictions_yes" name="diet_restrictions_checkbox" value="yes">
-                <label for="diet_restrictions_yes">Áno</label><br>
-            </div>
-            <div class="yes-no-container">
-                <input type="radio" id="diet_restrictions_no" name="diet_restrictions_checkbox" value="no">
-                <label for="diet_restrictions_no">Nie</label><br>
-            </div>
-        </div>
+<section id="form">
+    <h1 class="section-h1">Dotazník</h1>
+    <h3 style="text-align: center;">
+        Prosíme Vás o vyplnenie nasledujúceho dotáznika najneskôr do 30.06.2024.
         <br>
-        <div class="diet-restrictions-text-input">
-            <div class="label-input-container" id="container">
-                <label for="diet_restrictions_details">Konkrétne:</label>
-                <input type="text" id="diet_restrictions_details" name="diet_restrictions_details">
-            </div>
+        Ďakujeme
+    </h3>
+    {% include 'form.html' %}
+</section>
+
+<section id="where">
+    <h1 class="section-h1">Kde</h1>
+    <div class="where-container">
+        <div class="place-container">
+            <h1>Obrad</h1>
+            <p>Kostol sv. Cyrila a Metoda (Terchová)</p>
+            <br>
+            <p>Začiatok: 14:00</p>
+            <br>
+            <p><i class="fa-regular fa-map-location-dot"></i> Sv. Martina 1279/10, 013 06 Terchová</p>
+            <a style="border: 1px solid #2e513d;" class="open-map-button" href="https://www.google.com/maps?q=49.258087291277164, 19.031563697293645" target="_blank">Mapa google</a>
+
+        </div>
+        <div class="place-container">
+            <h1>Svadobná hostina</h1>
+            <p>Hotel Boboty, Malá Fatra</p>
+            <br>
+            <p>Začiatok: 16:00</p>
+            <br>
+            <p><i class="fa-regular fa-map-location-dot"></i> Vrátna 515, 013 06 Terchová</p>
+            <a style="border: 1px solid #2e513d;" class="open-map-button" href="https://www.google.com/maps?q=49.23614828253267, 19.05070968465837" target="_blank">Mapa google</a>
+
         </div>
     </div>
+</section>
 
-    <div class="segment" id="accommodation_segment">
-        <label class="question">Ubytovanie:</label><br>
-        <div class="checkbox-container">
-            <input type="radio" id="accommodation_none" name="accommodation" value="none">
-            <label for="accommodation_none">Nie, nemám záujem o ubytovanie</label><br>
+<section id="info">
+    <h1 class="section-h1">Informácie</h1>
+    <div class="info-containers">
+        <div class="info-container">
+            <h3>Pred obradom</h3>
+            <p>
+                O 13:15 sa spoločne stretneme před kostolom v Terchovej, kde pre Vás bude pripravené pohostenie.
+                <br>
+                Zaparkovať môžete pozdĺž cesty pred kostolom alebo naproti kostolu pred obecným úradom.
+                <br>
+                Prosíme o dochvíľnosť, ďakujeme.
+            </p>
         </div>
-        <div class="checkbox-container">
-            <input type="radio" id="accommodation_one_night" name="accommodation" value="one_night">
-            <label for="accommodation_one_night">Áno, chcem ostať na 1 noc (zo soboty na nedeľu)</label><br>
+        <div class="info-container">
+            <h3>Po obrade</h3>
+            <p>
+                Po obrade bude priestor na gratulácie a hromadné fotenie.
+                <br>
+                Následne sa vlastnými autami spoločne presunieme do krásneho horského prostredia k hotelu Boboty.
+            </p>
         </div>
-        <div class="checkbox-container">
-            <input type="radio" id="accommodation_multiple_nights" name="accommodation" value="multiple_nights">
-            <label for="accommodation_multiple_nights">Áno, chcem sa ubytovať na viac nocí, konkrétne (dátum od-do):</label>
+        <div class="info-container">
+            <h3>Ubytovanie</h3>
+            <p>
+                Aby ste sa nemuseli nijak obmedzovať, máme pre Vás zabezpečené ubytovanie priamo v hoteli Boboty, v ktorom sa bude konať svadobná hostina.
+                <br>
+                Okrem nádherných výhľadov bude súčasťou ubytovania aj hotelové wellness a raňajky.
+                <br>
+                V prípade záujmu o ubytovanie, Vás o všetkých podrobnostiach budeme včas informovať.
+            </p>
         </div>
-        <br>
-        <div class="date-from-to-inputs">
-            <div class="label-input-container">
-                <label for="accommodation_from">Od</label>
-                <input type="date" id="accommodation_from" name="accommodation_from">
-            </div>
-            <div class="label-input-container">
-                <label for="accommodation_from">Do</label>
-                <input type="date" id="accommodation_to" name="accommodation_to">
-            </div>
-            *poznámka: noc zo soboty na nedeľu Vám uhradíme my, na ostatné noci Vám dokážeme zabezpečiť zľavu.
+        <div class="info-container">
+            <h3>Zábava</h3>
+            <p>
+                Celým večerom (a nocou) nás bude sprevádzať česká kapela Astmatic.
+                <br>
+                Odporúčame Vám si vziať pohodlnú tanečnú obuv, pretože ako už na Slovensku býva zvykom – po polnoci začína tá najlepšia zábava.
+            </p>
+        </div>
+        <div class="info-container">
+            <h3>Deti</h3>
+            <p>
+                Budeme radi, ak si náš deň užijete s nami a budeme ho spoločne brať ako jednu veľkú párty.
+                <br>
+                Preto Vás prosíme, nechajte svoje ratolesti v tento deň na starosť babičkám/tetám, nech si aj oni užijú spoločne strávený čas.
+                <br>
+                Ďakujeme <3
+            </p>
+        </div>
+        <div class="info-container">
+            <h3>Dary</h3>
+            <p>
+                Milá rodinka a kamaráti, nelámte si hlavu nad vecnými darmi, pre nás najdôležitejšie, že s nami oslavite tento náš deň.
+                <br>
+                Ak by ste nás ale chceli obdarovať, budeme vďační za každý, zo srdca venovaný finančný dar, ktorý použijeme na rekonštrukciu nášho vysnívaného domova.
+                <br>
+                Vopred Vám veľmi pekne ďakujeme <3
+            </p>
+        </div>
+        <div class="info-container">
+            <h3>Dress Code</h3>
+            <p>
+                Ak by ste sa chceli zladiť s našou svadbou, odporúčili by sme Vám tieto farby:
+            </p>
+            <img src="{% static 'images/farby.jpg' %}" alt="">
         </div>
     </div>
-
-    <div class="segment" id="drinks_segment">
-        <label class="question">Najradšej pijem (možnosť viacerých odpovedí):</label><br>
-        <div class="checkbox-container">
-            <input type="checkbox" id="drink_1" name="drink_preferences" value="Svetlá pálenka">
-            <label for="drink_1">Svetlá pálenka (domáca slivovica, gin, vodka)</label><br>
-        </div>
-        <div class="checkbox-container">
-            <input type="checkbox" id="drink_2" name="drink_preferences" value="Tmavá pálenka">
-            <label for="drink_2">Tmavá pálenka (rum, whiskey, jagermaister)</label><br>
-        </div>
-        <div class="checkbox-container">
-            <input type="checkbox" id="drink_3" name="drink_preferences" value="Pivo">
-            <label for="drink_3">Pivo</label><br>
-        </div>
-        <div class="checkbox-container">
-            <input type="checkbox" id="drink_4" name="drink_preferences" value="Biele víno">
-            <label for="drink_4">Biele víno</label><br>
-        </div>
-        <div class="checkbox-container">
-            <input type="checkbox" id="drink_5" name="drink_preferences" value="Červené víno">
-            <label for="drink_5">Červené víno</label><br>
-        </div>
-        <div class="checkbox-container">
-            <input type="checkbox" id="drink_6" name="drink_preferences" value="Nealko">
-            <label for="drink_6">Nealko</label>
-        </div>
-    </div>
-
-    <div class="segment" id="song_segment">
-        <label class="question" for="song">Na parkete to roztočím, keď kapela zahrá túto pesničku:</label>
-        <input type="text" id="song" name="song">
-    </div>
-
-    <button type="submit">Uložiť</button>
-</form>
+</section>
 
 {% endblock %}
 
