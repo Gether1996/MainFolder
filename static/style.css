@@ -1,0 +1,113 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the form container */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    width: 40%;
+    margin: 0 auto;
+    padding: 20px;
+    border: none;
+    border-radius: 15px;
+    background-color: #e4e6eb;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+form:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+.checkbox-container {
+    display: flex;
+    margin: auto;
+}
+
+.diet-restrictions-text-input,
+.date-from-to-inputs {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.diet-restrictions-text-input.show,
+.date-from-to-inputs.show {
+    display: block;
+    opacity: 1;
+}
+
+.label-input-container {
+    display: flex;
+    width: 70%;
+    justify-content: center;
+    align-items: center;
+}
+
+.label-input-container label {
+    font-size: 18px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+
+.yes-no-container {
+    margin-right: 10px;
+    display: flex;
+}
+
+/* Style form labels */
+label {
+    display: block;
+}
+
+.question {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.segment {
+    margin-bottom: 20px;
+}
+
+/* Style text inputs */
+input[type="text"],
+input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Style checkboxes and radio buttons */
+input[type="checkbox"],
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+button[type="submit"] {
+    background-color: #2e513d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.radio-options-in-row {
+    display: flex;
+}
+
+.radio-options-in-row input {
+    margin-right: 10px;
+}
