@@ -9,8 +9,17 @@
     <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}">
     <link rel="stylesheet" href="{% static 'slick.min.css' %}">
+    <link rel="stylesheet" href="{% static 'flipdown.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'Breathing.woff' %}">
     {% block extra_head %}{% endblock %}
 </head>
+
+<style>
+    @font-face {
+        font-family: 'BreathingFont';
+        src: url('{% static 'Breathing.woff' %}') format('woff');
+    }
+</style>
 
 <body>
 
@@ -22,6 +31,7 @@
         </script>
         <script src="{% static 'scripts/jquery-3.6.0.min.js' %}"></script>
         <script src="{% static 'scripts/slick.min.js' %}"></script>
+        <script src="{% static 'scripts/flipdown.js' %}"></script>
         <script src="{% static 'scripts/sweetalert2@11.js' %}"></script>
         <script src="{% static 'scripts/general.js' %}"></script>
     {% block extra_scripts %}{% endblock %}

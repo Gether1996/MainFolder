@@ -3,7 +3,7 @@
     {% csrf_token %}
     <div class="segment" id="name_surname_segment">
         <label class="question" for="full_name">Meno a Priezvisko:</label>
-        <input type="text" id="full_name" name="full_name">
+        <input class="text-input-form" type="text" id="full_name" name="full_name">
     </div>
 
     <div class="segment" id="attending_segment">
@@ -99,8 +99,8 @@
 
     <div class="segment" id="song_segment">
         <label class="question" for="song">Na parkete to roztočím, keď kapela zahrá túto pesničku:</label>
-        <input type="text" id="song" name="song">
+        <input class="text-input-form" type="text" id="song" name="song">
     </div>
 
-    <button type="submit">Odoslať</button>
+    <button type="submit"><i class="fa-duotone fa-envelope"></i> Odoslať</button>
 </form>

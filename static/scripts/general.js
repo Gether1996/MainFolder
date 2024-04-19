@@ -220,7 +220,7 @@ function areYouSure() {
 function smoothScroll(targetId) {
     var target = document.getElementById(targetId);
     if (target) {
-      var targetPosition = target.offsetTop - 100; // Get the target element's position with an additional 100px offset from the top
+      var targetPosition = target.offsetTop - 120; // Get the target element's position with an additional 100px offset from the top
       var startPosition = window.pageYOffset; // Get current position
       var distance = targetPosition - startPosition;
       var duration = 1000; // Set the duration of the scroll in milliseconds
@@ -266,27 +266,27 @@ $('.slider').slick({
 });
 
 
-var countDownDate = new Date("Sep 21, 2024 14:00:00").getTime();
+document.addEventListener('DOMContentLoaded', () => {
+    // Get the current timestamp in seconds
+    var nowTimestamp = Math.floor(Date.now() / 1000);
 
-var x = setInterval(function() {
-    var now = new Date().getTime();
-    var distance = countDownDate - now;
+    // Set the target date and time (September 21st, 2024, 14:00 UTC+2)
+    var targetDate = new Date('2024-09-21T14:00:00+02:00');
 
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    // Convert the target date to UTC and get its timestamp in seconds
+    var targetTimestamp = Math.floor(targetDate.getTime() / 1000);
 
-    var daysText = (days === 1) ? 'deň' : (days <= 4 ? 'dni' : 'dní');
-    var hoursText = (hours === 1) ? 'hodina' : (0 !== hours && hours <= 4 ? 'hodiny' : 'hodín');
-    var minutesText = (minutes === 1) ? 'minúta' : (0 !== minutes && minutes <= 4 ? 'minúty' : 'minút');
-    var secondsText = (seconds === 1) ? 'sekunda' : (0 !== seconds && seconds <= 4 ? 'sekundy' : 'sekúnd');
+    // Calculate the difference in seconds between now and the target timestamp
+    var differenceInSeconds = targetTimestamp - nowTimestamp;
 
-    document.getElementById("countdown").innerHTML ='Odpočet do obradu: ' + days + " " + daysText + " " + hours + " " + hoursText + " "
-    + minutes + " " + minutesText + " " + seconds + " " + secondsText;
+    // Set up FlipDown with the target timestamp
+    var flipdown = new FlipDown(targetTimestamp)
 
-    if (distance < 0) {
-        clearInterval(x);
-        document.getElementById("countdown").innerHTML = "KONIEC";
-    }
-}, 1000);
+    // Start the countdown
+    .start()
+
+    // Do something when the countdown ends
+    .ifEnded(() => {
+      console.log('Koniec!');
+    });
+});

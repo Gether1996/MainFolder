@@ -7,9 +7,12 @@
 
 {% block content %}
 
-<div id="countdown" class="countdown"></div>
-
 <section id="home">
+
+    <div class="countdown-container">
+      <div id="flipdown" class="flipdown"></div>
+    </div>
+
     <h1 class="section-h1"></h1>
         <div class="slider">
             {% for photo in photos %}
@@ -18,44 +21,32 @@
         </div>
 </section>
 
-<section id="form">
-    <h1 class="section-h1">Dotazník</h1>
-    <h3 style="text-align: center;">
-        Prosíme Vás o vyplnenie nasledujúceho dotáznika najneskôr do 30.06.2024.
-        <br>
-        Ďakujeme
-    </h3>
-    {% include 'form.html' %}
-</section>
-
 <section id="where">
     <h1 class="section-h1">Kde</h1>
     <div class="where-container">
         <div class="place-container">
             <h1>Obrad</h1>
-            <p>Kostol sv. Cyrila a Metoda (Terchová)</p>
-            <br>
             <p>Začiatok: 14:00</p>
-            <br>
+            <p>Kostol sv. Cyrila a Metoda (Terchová)</p>
             <p><i class="fa-regular fa-map-location-dot"></i> Sv. Martina 1279/10, 013 06 Terchová</p>
-            <a style="border: 1px solid #2e513d;" class="open-map-button" href="https://www.google.com/maps?q=49.258087291277164, 19.031563697293645" target="_blank">Mapa google</a>
+            <br>
+            <a class="open-map-button" href="https://www.google.com/maps?q=49.258087291277164, 19.031563697293645" target="_blank">Mapa google</a>
 
         </div>
         <div class="place-container">
             <h1>Svadobná hostina</h1>
-            <p>Hotel Boboty, Malá Fatra</p>
-            <br>
             <p>Začiatok: 16:00</p>
-            <br>
+            <p>Hotel Boboty, Malá Fatra</p>
             <p><i class="fa-regular fa-map-location-dot"></i> Vrátna 515, 013 06 Terchová</p>
-            <a style="border: 1px solid #2e513d;" class="open-map-button" href="https://www.google.com/maps?q=49.23614828253267, 19.05070968465837" target="_blank">Mapa google</a>
+            <br>
+            <a class="open-map-button" href="https://www.google.com/maps?q=49.23614828253267, 19.05070968465837" target="_blank">Mapa google</a>
 
         </div>
     </div>
 </section>
 
 <section id="info">
-    <h1 class="section-h1">Informácie ku svadobnému dňu</h1>
+    <h1 class="section-h1">Informácie ku svadbe</h1>
     <div class="info-containers">
         <div class="info-container">
             <h3>Pred obradom</h3>
@@ -121,6 +112,18 @@
             <img src="{% static 'images/farby.jpg' %}" alt="">
         </div>
     </div>
+</section>
+
+<hr>
+
+<section id="form">
+    <h1 class="section-h1">Dotazník</h1>
+    <h3 style="text-align: center;">
+        Prosíme Vás o vyplnenie nasledujúceho dotáznika najneskôr do 30.06.2024.
+        <br>
+        Ďakujeme
+    </h3>
+    {% include 'form.html' %}
 </section>
 
 {% endblock %}
