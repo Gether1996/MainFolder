@@ -9,8 +9,8 @@ body{
     top: 0;
     width: 100%;
     height: 80px;
-    z-index: 9000;
     display: flex;
+    z-index: 5;
     align-items: center;
     justify-content: center;
     background-color: white;
@@ -31,10 +31,9 @@ body{
     padding: 10px 20px;
     border-radius: 30px;
     border: none;
-    background-color: transparent;
+    background-color: white;
     color: black;
     transition: 0.3s;
-
 }
 
 .open-map-button:hover,
@@ -161,7 +160,7 @@ button[type="submit"]:hover {
 
 .slider {
     width: 100%; /* Set the width of the slider */
-    height: 500px;
+    height: auto;
     margin: 0 auto; /* Center the slider */
     position: relative;
 }
@@ -246,4 +245,9 @@ button[type="submit"]:hover {
 
 .info-container{
     text-align: center;
+}
+
+.countdown {
+    text-align: center;
+    font-size: 50px;
 }

@@ -4,6 +4,12 @@ document.addEventListener("DOMContentLoaded", function() {
     var fromDateInput = document.getElementById("accommodation_from");
     var toDateInput = document.getElementById("accommodation_to");
 
+    var startingDate = new Date("September 22, 2024");
+    var DateISOString = startingDate.toISOString().slice(0,10);
+
+    fromDateInput.value = DateISOString;
+    toDateInput.value = DateISOString;
+
     var allRadios = document.querySelectorAll('input[name="accommodation"]');
 
     allRadios.forEach(function(radio) {
@@ -13,6 +19,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     dateInputsContainer.style.display = "block";
                     dateInputsContainer.offsetHeight;
                     dateInputsContainer.style.opacity = 1;
+                    fromDateInput.value = DateISOString;
+                    toDateInput.value = DateISOString;
                     fromDateInput.required = true;
                     toDateInput.required = true;
                 }, 100);
@@ -58,8 +66,12 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('rsvpForm');
-    const segments = document.querySelectorAll('.segment');
+    var form = document.getElementById('rsvpForm');
+    var segments = document.querySelectorAll('.segment');
+    var full_name_input = document.getElementById("full_name");
+    var dateInputsContainer = document.querySelector(".date-from-to-inputs");
+    var fromDateInput = document.getElementById("accommodation_from");
+    var toDateInput = document.getElementById("accommodation_to");
 
     form.addEventListener('submit', function (event) {
         event.preventDefault();
@@ -68,8 +80,8 @@ document.addEventListener('DOMContentLoaded', function () {
         let incompleteSegmentId = '';
 
         for (let i = 0; i < segments.length; i++) {
-            const segment = segments[i];
-            const inputs = segment.querySelectorAll('input[type="radio"], input[type="checkbox"], input[type="text"], textarea');
+            var segment = segments[i];
+            var inputs = segment.querySelectorAll('input[type="radio"], input[type="checkbox"], input[type="text"], textarea');
             let segmentComplete = false;
 
             inputs.forEach(input => {
@@ -82,6 +94,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 isComplete = false;
                 incompleteSegmentId = segment.id;
                 break;
+            }
+        }
+
+        if (dateInputsContainer.style.display === "block") {
+            if (toDateInput.value <= fromDateInput.value) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Ubytovanie - deň do niesmie byť vačší alebo rovný ako deň od.',
+                    confirmButtonColor: '#2e513d',
+                    confirmButtonText: 'ok',
+                    showCancelButton: false,
+                });
+                return;
             }
         }
 
@@ -114,13 +139,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
             Swal.fire({
                 icon: 'error',
-                title: 'Error',
-                text: errorMessage,
+                title: errorMessage,
+                confirmButtonColor: '#2e513d',
+                confirmButtonText: 'ok',
+                showCancelButton: false,
             });
             return;
         }
 
-        form.submit();
+        Swal.fire({
+            icon: 'success',
+            confirmButtonColor: '#2e513d',
+            confirmButtonText: 'ok',
+            showConfirmButton: true,
+            showCancelButton: false,
+            timer: 2000,
+            title: `Ďakujeme za vyplnenie dotazníku!
+                    ${full_name_input.value} - tešíme sa na teba.
+                    `,
+        });
+        setTimeout(function() {
+            form.submit();
+        }, 2000);
     });
 });
 
@@ -224,3 +264,29 @@ $('.slider').slick({
         return '<button type="button" class="custom-dot"></button>';
     }
 });
+
+
+var countDownDate = new Date("Sep 21, 2024 14:00:00").getTime();
+
+var x = setInterval(function() {
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
+
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    var daysText = (days === 1) ? 'deň' : (days <= 4 ? 'dni' : 'dní');
+    var hoursText = (hours === 1) ? 'hodina' : (0 !== hours && hours <= 4 ? 'hodiny' : 'hodín');
+    var minutesText = (minutes === 1) ? 'minúta' : (0 !== minutes && minutes <= 4 ? 'minúty' : 'minút');
+    var secondsText = (seconds === 1) ? 'sekunda' : (0 !== seconds && seconds <= 4 ? 'sekundy' : 'sekúnd');
+
+    document.getElementById("countdown").innerHTML ='Odpočet do obradu: ' + days + " " + daysText + " " + hours + " " + hoursText + " "
+    + minutes + " " + minutesText + " " + seconds + " " + secondsText;
+
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("countdown").innerHTML = "KONIEC";
+    }
+}, 1000);
