@@ -252,7 +252,7 @@ function smoothScroll(targetId) {
 }
 
 $('.slider').slick({
-    slidesToShow: 3,
+    slidesToShow: 2,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2500,
@@ -279,14 +279,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Calculate the difference in seconds between now and the target timestamp
     var differenceInSeconds = targetTimestamp - nowTimestamp;
 
-    // Set up FlipDown with the target timestamp
-    var flipdown = new FlipDown(targetTimestamp)
-
-    // Start the countdown
-    .start()
-
-    // Do something when the countdown ends
-    .ifEnded(() => {
-      console.log('Koniec!');
-    });
+    var flipdown = new FlipDown(targetTimestamp, {
+      headings: ["Dni", "Mesiace", "Minúty", "Sekundy"],
+    }).start();
 });

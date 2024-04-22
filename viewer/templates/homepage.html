@@ -8,17 +8,23 @@
 {% block content %}
 
 <section id="home">
+    <div class="main-container">
+
+        <h1 style="margin: 0px;"><i class="fa-regular fa-rings-wedding"></i> Romana a Daniel <i class="fa-regular fa-rings-wedding"></i></h1>
+
+
+        <h2>21. 9. 2024</h2>
+    </div>
+
+    <div class="slider">
+        {% for photo in photos %}
+            <div><img src="{{ photo.photo.url }}" alt="Slide"></div>
+        {% endfor %}
+    </div>
 
     <div class="countdown-container">
       <div id="flipdown" class="flipdown"></div>
     </div>
-
-    <h1 class="section-h1"></h1>
-        <div class="slider">
-            {% for photo in photos %}
-                <div><img src="{{ photo.photo.url }}" alt="Slide"></div>
-            {% endfor %}
-        </div>
 </section>
 
 <section id="where">

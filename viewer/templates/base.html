@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}">
     <link rel="stylesheet" href="{% static 'slick.min.css' %}">
     <link rel="stylesheet" href="{% static 'flipdown.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'Breathing.woff' %}">
     {% block extra_head %}{% endblock %}
 </head>
 
@@ -18,6 +17,11 @@
     @font-face {
         font-family: 'BreathingFont';
         src: url('{% static 'Breathing.woff' %}') format('woff');
+    }
+
+    @font-face {
+        font-family: 'adine';
+        src: url('{% static 'adine.woff' %}') format('woff');
     }
 </style>
 
