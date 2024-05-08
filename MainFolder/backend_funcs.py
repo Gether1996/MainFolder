@@ -3,6 +3,18 @@ from django.shortcuts import redirect
 from viewer.models import Person
 from datetime import datetime
 import json
+import hashlib
+import random
+
+
+def generate_hash_code():
+    random_number = random.randint(0, 99999999)
+    random_hash = hashlib.sha256(str(random_number).encode('utf-8')).hexdigest()[:8]
+
+    if not Person.objects.filter(hash=random_hash).exists():
+        return random_hash
+    else:
+        return generate_hash_code()
 
 
 def submit_form(request):
@@ -25,7 +37,7 @@ def submit_form(request):
 
         drinks_string = ''
         for drink in drink_preferences:
-            drinks_string += f'{drink} '
+            drinks_string += f'{drink}\n'
 
         new_person = Person.objects.create(
             full_name=form_data['full_name'],
@@ -34,10 +46,11 @@ def submit_form(request):
             accommodation_from=accommodation_from,
             accommodation_to=accommodation_to,
             drink_preferences=drinks_string,
-            song=form_data['song']
+            song=form_data['song'],
+            hash=generate_hash_code()
         )
 
-        return redirect('homepage')
+        return redirect('submitted_form', hash=new_person.hash)
 
 
 def submit_form_no_attendance(request):
@@ -52,6 +65,7 @@ def submit_form_no_attendance(request):
             accommodation_to=None,
             drink_preferences='',
             song='',
+            hash=generate_hash_code()
         )
 
         return JsonResponse({"status": "success"})

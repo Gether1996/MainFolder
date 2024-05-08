@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+<div style="display: flex; flex-direction: column; margin: auto; text-align: center;">
+  <h1>Rekapitulácia vášho dotazníku</h1>
+
+  <table class="submitted_form_table">
+    <tbody>
+      <tr>
+        <th>Meno a priezvisko</th>
+        <td>{{ person.full_name }}</td>
+      </tr>
+      <tr>
+        <th>Zúčastním sa</th>
+        {% if person.attending %}
+          <td> <i style="color: green;" class="fa-solid fa-check"></i> </td>
+        {% else %}
+          <td> <i style="color: red;" class="fa-solid fa-x"></i> </td>
+        {% endif %}
+      </tr>
+      {% if person.attending %}
+      <tr>
+        <th>Intolerancie</th>
+        <td>{% if person.dietary_restrictions %}{{ person.dietary_restrictions }}{% else %} Žiadne {% endif %}</td>
+      </tr>
+      <tr>
+        <th>Ubytovanie od</th>
+        <td>{% if person.accommodation_from %}{{ person.accommodation_from|date:"d.m.Y" }}{% else %} Bez ubytovania {% endif %}</td>
+      </tr>
+      <tr>
+        <th>Do</th>
+        <td>{% if person.accommodation_to %}{{ person.accommodation_to|date:"d.m.Y" }}{% else %} Bez ubytovania {% endif %}</td>
+      </tr>
+      <tr>
+        <th>Pitie</th>
+        <td>
+          {% for drink in person.list_of_drinks %}
+            {{ drink }} <br>
+          {% endfor %}
+        </td>
+      </tr>
+      <tr>
+        <th>Pieseň</th>
+        <td>{{ person.song }}</td>
+      </tr>
+      {% endif %}
+    </tbody>
+  </table>
+
+  <a style="margin-top: 20px; width: 30%; text-decoration: none;" class="go-homepage-button" href="{% url 'homepage' %}">Späť na stránku</a>
+</div>
+
+{% endblock %}

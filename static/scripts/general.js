@@ -252,17 +252,25 @@ function smoothScroll(targetId) {
 }
 
 $('.slider').slick({
-    slidesToShow: 2,
-    slidesToScroll: 1,
-    autoplay: true,
-    autoplaySpeed: 2500,
-    arrows: true,
-    dots: true,
-    prevArrow: '<button type="button" class="slick-prev"><i class="fa-solid fa-arrow-left-to-arc"></i></button>',
-    nextArrow: '<button type="button" class="slick-next"><i class="fa-solid fa-arrow-right-to-arc"></i></button>',
-    customPaging: function(slider, i) {
-        return '<button type="button" class="custom-dot"></button>';
+  slidesToShow: 3,  // Initial value for larger screens
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2500,
+  arrows: true,
+  dots: true,
+  prevArrow: '<button type="button" class="slick-prev"><i class="fa-solid fa-arrow-left-to-arc"></i></button>',
+  nextArrow: '<button type="button" class="slick-next"><i class="fa-solid fa-arrow-right-to-arc"></i></button>',
+  customPaging: function(slider, i) {
+    return '<button type="button" class="custom-dot"></button>';
+  },
+  responsive: [
+    {
+      breakpoint: 500,  // Adjust breakpoint as needed
+      settings: {
+        slidesToShow: 1,  // Show 2 slides on screens below 500px
+      }
     }
+  ]
 });
 
 
