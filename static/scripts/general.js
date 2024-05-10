@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
             confirmButtonText: 'ok',
             showConfirmButton: true,
             showCancelButton: false,
-            timer: 2000,
+            timer: 3000,
             title: `Ďakujeme za vyplnenie dotazníku!
                     ${full_name_input.value} - tešíme sa na teba.
                     `,
@@ -288,6 +288,6 @@ document.addEventListener('DOMContentLoaded', () => {
     var differenceInSeconds = targetTimestamp - nowTimestamp;
 
     var flipdown = new FlipDown(targetTimestamp, {
-      headings: ["Dni", "Mesiace", "Minúty", "Sekundy"],
+      headings: ["Dni", "Hodiny", "Minúty", "Sekundy"],
     }).start();
 });

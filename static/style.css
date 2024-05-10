@@ -229,6 +229,11 @@ button[type="submit"]:hover {
     height: auto; /* Maintain image aspect ratio */
 }
 
+.h1-romana-dano {
+    font-size: 40px;
+    margin: 0px;
+}
+
 .slick-prev,
 .slick-next {
     font-size: 40px;
@@ -365,6 +370,10 @@ button[type="submit"]:hover {
 
     .navbar {
         height: 70px;
+    }
+
+    .h1-romana-dano {
+        font-size: 30px;
     }
 
     .navbar-content {
