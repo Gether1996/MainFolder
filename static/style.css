@@ -20,10 +20,13 @@ section {
     padding-bottom: 20px;
 }
 
-.strom {
-    margin: 20px;
-    width: 30px;
-    margin-bottom: 30px;
+.stromy {
+  position: absolute;
+  top: 2000px;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+  opacity: 0.3;
 }
 
 .main-container h1{
@@ -431,10 +434,13 @@ button[type="submit"]:hover {
         margin-right: 10px;
     }
 
-    .strom {
-        margin: 10px;
-        width: 25px;
-        margin-bottom: 20px;
+    .stromy {
+      position: fixed;
+      top: 100px;
+      left: -200px;
+      width: 800px;
+      z-index: -1;
+      opacity: 0.3;
     }
 
     .main-container h2{
