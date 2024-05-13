@@ -445,7 +445,7 @@ button[type="submit"]:hover {
         align-items: center;
         padding: 10px;
         width: 350px;
-        margin-left: 10px;
+        margin: auto;
         margin-top: 50px;
     }
 
