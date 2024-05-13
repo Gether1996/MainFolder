@@ -14,8 +14,11 @@ SECRET_KEY = 'django-insecure-oq^9kklnk+2!5v_n$x5)&&7-@1^^leh(dnmv(zz&%@=4&*^ul^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '*', 'romanadaniel.314.sk']
 
+DOMAINS = ['https://romanadaniel.314.sk']
+
+CSRF_TRUSTED_ORIGINS = DOMAINS
 
 # Application definition
 
