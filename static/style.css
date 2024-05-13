@@ -20,6 +20,12 @@ section {
     padding-bottom: 20px;
 }
 
+.strom {
+    margin: 20px;
+    width: 30px;
+    margin-bottom: 30px;
+}
+
 .main-container h1{
     font-family: 'BreathingFont', sans-serif;
     margin-bottom: 0px;
@@ -423,6 +429,12 @@ button[type="submit"]:hover {
         font-size: 20px;
         margin-left: 10px;
         margin-right: 10px;
+    }
+
+    .strom {
+        margin: 10px;
+        width: 25px;
+        margin-bottom: 20px;
     }
 
     .main-container h2{
